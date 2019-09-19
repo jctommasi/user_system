@@ -22,19 +22,15 @@ void stuff_displayBanner()
 	printf("██║   ██║╚════██║██╔══╝  ██╔══██╗╚════██║    ╚════██║  ╚██╔╝  ╚════██║\n");
 	printf("╚██████╔╝███████║███████╗██║  ██║███████║    ███████║   ██║   ███████║\n");
 	printf(" ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝    ╚══════╝   ╚═╝   ╚══════╝\n");
-	printf("\033[0;31m");
-	printf("TRABAJO PRACTICO N1 - UTN - PROGRAMACION I \n\n"
-			"AUTHOR:		juan cruz tommasi \n"
-			"DATE:		31 aug 2019\n"
-			"DESC:		very basic calculat0r \n\n");
 	printf("\033[0m");
+
 }
 
 int stuff_showMenu(int* pOperationNumber)
 {
 	int operationNumber;
 	int traceback = -1;
-
+	printf("\033[0;31m");
 	printf("Que operacion desea realizar?\n"
 			"\n		1. Alta"
 			"\n		2. Baja"
@@ -43,6 +39,7 @@ int stuff_showMenu(int* pOperationNumber)
 			"\n		5. Ordenar"
 			"\n\n	Opcion: ");
 	scanf("%d", &operationNumber);
+	printf("\033[0m");
 
 	if(operationNumber >= 1 && operationNumber <= 5)
 	{
