@@ -10,11 +10,16 @@
 
 int main(void)
 {
-	int operationNumber;
-	Persona database[3];
-
+	int opNumber;
 	stuff_displayBanner();
-	stuff_showMenu(&operationNumber);
+	stuff_showMenu(&opNumber);
+
+	do
+	{
+
+	}	while (opNumber != 6)
+
+
 
 	return EXIT_SUCCESS;
 }
