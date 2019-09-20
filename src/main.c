@@ -24,7 +24,7 @@ int main(void)
 
 	do
 	{
-		utn_getUnsignedInt(MSG, MSG_ERROR,1,4,1,4,2, &opNumber);
+		utn_getUnsignedInt(MSG, MSG_ERROR,1,2,1,2,2, &opNumber);
 
 		switch (opNumber) {
 			case 1:
@@ -46,7 +46,7 @@ int main(void)
 
 				break;
 			default:
-				printf("Esa opcion no es valida..")
+				printf("Esa opcion no es valida..");
 				break;
 		}
 
