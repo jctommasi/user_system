@@ -36,6 +36,7 @@ void stuff_showMenu()
 			"\n		3. Modificar"
 			"\n		4. Listar"
 			"\n		5. Ordenar"
-			"\n\n	Opcion: ");
+			"\n		6. Salir"
+			"\n\n	Opcion:");
 	printf("\033[0m");
 }
