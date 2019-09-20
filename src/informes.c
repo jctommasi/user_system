@@ -1,19 +1,20 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "db_model_func.h"  //cambiar por nombre entidad
 #include "utn.h"
-#include "fantasma.h"  //cambiar por nombre entidad
 
 /** \brief Busca un valor y lista los elementos de dos arrays vinculados
 * \param arrayA Fantasma Array de Fantasma
 * \param arrayB Fantasma Array de Fantasma
-* \param sizeI int Tamaño del arrayA
-* \param sizeJ int Tamaño del arrayB
+* \param sizeI int Tamaï¿½o del arrayA
+* \param sizeJ int Tamaï¿½o del arrayB
 * \param criterio char* Puntero al valor que debe contener el elemento del array para que se liste
 * \return int Return (-1) si Error [Invalid length or NULL pointer] - (0) Ok
 *
 */
-int Informes_listarPorCriterio(Fantasma arrayA[], Fantasma arrayB[], int sizeI, int sizeJ, char* criterio)  //Valores de dos arrays. Si es valor repetido se vuelve a imprimir
+int Informes_listarPorCriterio(Model arrayA[], Model arrayB[], int sizeI, int sizeJ, char* criterio)  //Valores de dos arrays. Si es valor repetido se vuelve a imprimir
 {
     int retorno=-1;
     int i;
@@ -26,7 +27,7 @@ int Informes_listarPorCriterio(Fantasma arrayA[], Fantasma arrayB[], int sizeI, 
                 continue;                                                                       //si esta vacio o no tiene el criterio > continue
             if(strcmp(arrayA[i].varString,criterio)==0)
             {
-                fantasma_buscarID(arrayB,sizeJ,arrayA[i].idUnico,&j);                            //Obtengo la posicion de la 2da entidad buscando por el campo en comun
+                model_findId(arrayB,sizeJ,arrayA[i].idUnico,&j);                            //Obtengo la posicion de la 2da entidad buscando por el campo en comun
                 printf("\nID A: %d\nID B: %d",
                        arrayA[i].idUnico,arrayB[j].idUnico);
             }
@@ -40,13 +41,13 @@ int Informes_listarPorCriterio(Fantasma arrayA[], Fantasma arrayB[], int sizeI, 
 /** \brief Busca un valor repetido y lo lista una sola vez, junto con otros elementos de dos arrays vinculados
 * \param arrayA Fantasma Array de Fantasma
 * \param arrayB Fantasma Array de Fantasma
-* \param sizeI int Tamaño del arrayA
-* \param sizeJ int Tamaño del arrayB
+* \param sizeI int Tamaï¿½o del arrayA
+* \param sizeJ int Tamaï¿½o del arrayB
 * \return int Return (-1) si Error [Invalid length or NULL pointer] - (0) Ok
 *
 */
 //Lista un campo que se repite, lo imprime una sola vez y calcula contador y acumulado
-int Informes_listarCriterioContadorAcumulado(Fantasma arrayA[], Fantasma arrayB[], int sizeI, int sizeJ)         //cambiar Fantasma
+int Informes_listarCriterioContadorAcumulado(Model arrayA[], Model arrayB[], int sizeI, int sizeJ)         //cambiar Fantasma
 {
     int retorno=-1;
     int i;
@@ -60,7 +61,7 @@ int Informes_listarCriterioContadorAcumulado(Fantasma arrayA[], Fantasma arrayB[
     {
         for(i=0;i<sizeI;i++)
         {
-            fantasma_buscarString(arrayA,i,arrayA[i].varString,&auxPosicion);                  //cambiar nombreFuncion y campo      va a analizar hasta <i
+            model_searchString(arrayA,i,arrayA[i].varString,&auxPosicion);                  //cambiar nombreFuncion y campo      va a analizar hasta <i
             if(arrayA[i].isEmpty==1 && auxPosicion!=-1)
                 continue;                                                                 //Si ese valor ya aparecio > continue
             else
@@ -70,7 +71,7 @@ int Informes_listarCriterioContadorAcumulado(Fantasma arrayA[], Fantasma arrayB[
                 {
                     if(arrayA[k].isEmpty!=1 && strcmp(arrayA[k].varString,arrayA[i].varString)==0)     //Busco todas las veces que aparece ese cuit
                     {
-                        fantasma_buscarID(arrayB,sizeJ,arrayA[k].idUnico,&j);                 //cambiar Fantasma, busco por el campo en comun
+                        model_findId(arrayB,sizeJ,arrayA[k].idUnico,&j);                 //cambiar Fantasma, busco por el campo en comun
 
                         contador++;
                         acumulado+=(arrayA[k].varInt*arrayB[j].varInt);
@@ -92,12 +93,12 @@ int Informes_listarCriterioContadorAcumulado(Fantasma arrayA[], Fantasma arrayB[
 /** \brief Busca un maximo de ocurrencia y acumulado
 * \param arrayA Fantasma Array de Fantasma
 * \param arrayB Fantasma Array de Fantasma
-* \param sizeI int Tamaño del arrayA
-* \param sizeJ int Tamaño del arrayB
+* \param sizeI int Tamaï¿½o del arrayA
+* \param sizeJ int Tamaï¿½o del arrayB
 * \return int Return (-1) si Error [Invalid length or NULL pointer] - (0) Ok
 *
 */
-int Informes_maxContadorAcumulado(Fantasma arrayA[], Fantasma arrayB[], int sizeI, int sizeJ)
+int Informes_maxContadorAcumulado(Model arrayA[], Model arrayB[], int sizeI, int sizeJ)
 {
     int retorno=-1;
     int i;
@@ -115,7 +116,7 @@ int Informes_maxContadorAcumulado(Fantasma arrayA[], Fantasma arrayB[], int size
     {
         for(i=0;i<sizeI;i++)
         {
-            fantasma_buscarString(arrayA,i,arrayA[i].varString,&auxPosicion);                  //cambiar nombreFuncion y campo
+            model_searchString(arrayA,i,arrayA[i].varString,&auxPosicion);                  //cambiar nombreFuncion y campo
             if(arrayA[i].isEmpty==1 && auxPosicion!=-1)
                 continue;                                                                 //Si ese valor ya aparecio > continue
             else
@@ -126,7 +127,7 @@ int Informes_maxContadorAcumulado(Fantasma arrayA[], Fantasma arrayB[], int size
                     if(arrayA[k].isEmpty!=1 && strcmp(arrayA[k].varString,arrayA[i].varString)==0)     //Busco todas las veces que aparece ese cuit
                     {
 
-                        fantasma_buscarID(arrayB,sizeJ,arrayA[k].idUnico,&j);                 //cambiar Fantasma, busco por el campo en comun
+                        model_findId(arrayB,sizeJ,arrayA[k].idUnico,&j);                 //cambiar Fantasma, busco por el campo en comun
 
                         contador++;                                                         //calculos acumulados y contador
                         acumulador+=(arrayA[k].varInt*arrayB[j].varInt);
@@ -188,12 +189,12 @@ int Informes_maxContadorAcumulado(Fantasma arrayA[], Fantasma arrayB[], int size
 /** \brief Crea una entidad auxiliar para ordenar e informar XXXXX
 * \param arrayA Fantasma Array de Fantasma
 * \param arrayB Fantasma Array de Fantasma
-* \param sizeI int Tamaño del arrayA
-* \param sizeJ int Tamaño del arrayB
+* \param sizeI int Tamaï¿½o del arrayA
+* \param sizeJ int Tamaï¿½o del arrayB
 * \return int Return (-1) si Error [Invalid length or NULL pointer] - (0) Ok
 *
 */
-int Informes_listarAuxiliarOrdenar(Fantasma arrayA[], Fantasma arrayB[], int sizeI, int sizeJ)         //cambiar Fantasma
+int Informes_listarAuxiliarOrdenar(Model arrayA[], Model arrayB[], int sizeI, int sizeJ)         //cambiar Fantasma
 {
     int retorno=-1;
     int i;
@@ -203,13 +204,13 @@ int Informes_listarAuxiliarOrdenar(Fantasma arrayA[], Fantasma arrayB[], int siz
     int contador=0;
     int acumulado=0;
 
-    Fantasma arrayAux[sizeI];                                                           //cambiar Fantasma y size si corresponde
+    Model arrayAux[sizeI];                                                           //cambiar Fantasma y size si corresponde
 
     if(arrayA!=NULL && sizeI>=0 && arrayB!=NULL && sizeJ>=0)
     {
         for(i=0;i<sizeI;i++)
         {
-            fantasma_buscarString(arrayA,i,arrayA[i].varString,&auxPosicion);                  //cambiar nombreFuncion y campo      va a analizar hasta <i
+            model_searchString(arrayA,i,arrayA[i].varString,&auxPosicion);                  //cambiar nombreFuncion y campo      va a analizar hasta <i
             if(arrayA[i].isEmpty==1 && auxPosicion!=-1)
                 continue;                                                                 //Si ese valor ya aparecio > continue
             else
@@ -219,7 +220,7 @@ int Informes_listarAuxiliarOrdenar(Fantasma arrayA[], Fantasma arrayB[], int siz
                 {
                     if(arrayA[k].isEmpty!=1 && strcmp(arrayA[k].varString,arrayA[i].varString)==0)     //Busco todas las veces que aparece ese cuit
                     {
-                        fantasma_buscarID(arrayB,sizeJ,arrayA[k].idUnico,&j);                 //cambiar Fantasma, busco por el campo en comun
+                        model_findId(arrayB,sizeJ,arrayA[k].idUnico,&j);                 //cambiar Fantasma, busco por el campo en comun
 
                         contador++;
                         acumulado+=(arrayA[k].varInt*arrayB[j].varInt);

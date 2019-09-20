@@ -1,8 +1,9 @@
+#include "db_model_func.h" //cambiar por nombre entidad
+
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "utn.h"
-#include "fantasma.h" //cambiar por nombre entidad
 
 
 /** \brief  To indicate that all position in the array are empty,
@@ -13,10 +14,10 @@
 * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
 *
 */
-int fantasma_Inicializar(Fantasma array[], int size)                                    //cambiar fantasma
+int model_clear_all(Model array[], int size)                                    //cambiar fantasma
 {
     int retorno=-1;
-    if(array!= NULL && size>0)
+    if(array != NULL && size>0)
     {
         for(;size>0;size--)
         {
@@ -37,7 +38,7 @@ int fantasma_Inicializar(Fantasma array[], int size)                            
 * \return int Return (-1) si no encuentra un lugar vacio o Error [Invalid length or NULL pointer] - (0) si encuentra una posicion vacia
 *
 */
-int fantasma_buscarEmpty(Fantasma array[], int size, int* posicion)                    //cambiar fantasma
+int model_findEmpty(Model array[], int size, int* posicion)                    //cambiar fantasma
 {
     int retorno=-1;
     int i;
@@ -63,7 +64,7 @@ int fantasma_buscarEmpty(Fantasma array[], int size, int* posicion)             
 * \return int Return (-1) si no encuentra el valor buscado o Error [Invalid length or NULL pointer] - (0) si encuentra el valor buscado
 *
 */
-int fantasma_buscarID(Fantasma array[], int size, int valorBuscado, int* posicion)                    //cambiar fantasma
+int model_findId(Model array[], int size, int valorBuscado, int* posicion)                    //cambiar fantasma
 {
     int retorno=-1;
     int i;
@@ -90,7 +91,7 @@ int fantasma_buscarID(Fantasma array[], int size, int valorBuscado, int* posicio
 * \return int Return (-1) si no encuentra el valor buscado o Error [Invalid length or NULL pointer] - (0) si encuentra el valor buscado
 *
 */
-int fantasma_buscarInt(Fantasma array[], int size, int valorBuscado, int* posicion)                    //cambiar fantasma
+int model_searchInt(Model array[], int size, int valorBuscado, int* posicion)                    //cambiar fantasma
 {
     int retorno=-1;
     int i;
@@ -119,7 +120,7 @@ int fantasma_buscarInt(Fantasma array[], int size, int valorBuscado, int* posici
 * \return int Return (-1) si no encuentra el valor buscado o Error [Invalid length or NULL pointer] - (0) si encuentra el valor buscado
 *
 */
-int fantasma_buscarString(Fantasma array[], int size, char* valorBuscado, int* indice)                    //cambiar fantasma
+int model_searchString(Model array[], int size, char* valorBuscado, int* indice)                    //cambiar fantasma
 {
     int retorno=-1;
     int i;
@@ -149,13 +150,13 @@ int fantasma_buscarString(Fantasma array[], int size, char* valorBuscado, int* i
 * \return int Return (-1) si Error [largo no valido o NULL pointer o no hay posiciones vacias] - (0) si se agrega un nuevo elemento exitosamente
 *
 */
-int fantasma_alta(Fantasma array[], int size, int* contadorID)                          //cambiar fantasma
+int model_signup(Model array[], int size, int* contadorID)                          //cambiar fantasma
 {
     int retorno=-1;
     int posicion;
     if(array!=NULL && size>0 && contadorID!=NULL)
     {
-        if(fantasma_buscarEmpty(array,size,&posicion)==-1)                          //cambiar fantasma
+        if(model_findEmpty(array,size,&posicion)==-1)                          //cambiar fantasma
         {
             printf("\nNo hay lugares vacios");
         }
@@ -184,7 +185,7 @@ int fantasma_alta(Fantasma array[], int size, int* contadorID)                  
 * \return int Return (-1) si Error [largo no valido o NULL pointer o no encuentra elementos con el valor buscado] - (0) si se elimina el elemento exitosamente
 *
 */
-int fantasma_baja(Fantasma array[], int sizeArray)                                      //cambiar fantasma
+int model_destroy(Model array[], int sizeArray)                                      //cambiar fantasma
 {
     int retorno=-1;
     int posicion;
@@ -192,7 +193,7 @@ int fantasma_baja(Fantasma array[], int sizeArray)                              
     if(array!=NULL && sizeArray>0)
     {
         utn_getUnsignedInt("\nID a cancelar: ","\nError",1,sizeof(int),1,sizeArray,1,&id);          //cambiar si no se busca por ID
-        if(fantasma_buscarID(array,sizeArray,id,&posicion)==-1)                                   //cambiar si no se busca por ID
+        if(model_findId(array,sizeArray,id,&posicion)==-1)                                   //cambiar si no se busca por ID
         {
             printf("\nNo existe este ID");                                                          //cambiar si no se busca por ID
         }
@@ -218,7 +219,7 @@ int fantasma_baja(Fantasma array[], int sizeArray)                              
 * \return int Return (-1) si Error [largo no valido o NULL pointer o no encuentra elementos con el valor buscado] - (0) si se elimina el elemento exitosamente
 *
 */
-int fantasma_bajaValorRepetidoInt(Fantasma array[], int sizeArray, int valorBuscado) //cuando hay que dar de baja todas las posiciones en las que se encuentra ese int
+int model_destroyMatchedInt(Model array[], int sizeArray, int valorBuscado) //cuando hay que dar de baja todas las posiciones en las que se encuentra ese int
 {
     int retorno=-1;
     int i;
@@ -251,7 +252,7 @@ int fantasma_bajaValorRepetidoInt(Fantasma array[], int sizeArray, int valorBusc
 * \return int Return (-1) si Error [largo no valido o NULL pointer o no encuentra elementos con el valor buscado] - (0) si se modifica el elemento exitosamente
 *
 */
-int fantasma_modificar(Fantasma array[], int sizeArray)                                //cambiar fantasma
+int model_modify(Model array[], int sizeArray)                                //cambiar fantasma
 {
     int retorno=-1;
     int posicion;
@@ -260,7 +261,7 @@ int fantasma_modificar(Fantasma array[], int sizeArray)                         
     if(array!=NULL && sizeArray>0)
     {
         utn_getUnsignedInt("\nID a modificar: ","\nError",1,sizeof(int),1,sizeArray,1,&id);         //cambiar si no se busca por ID
-        if(fantasma_buscarID(array,sizeArray,id,&posicion)==-1)                                   //cambiar si no se busca por ID
+        if(model_findId(array,sizeArray,id,&posicion)==-1)                                   //cambiar si no se busca por ID
         {
             printf("\nNo existe este ID");                                                          //cambiar si no se busca por ID
         }
@@ -305,7 +306,7 @@ int fantasma_modificar(Fantasma array[], int sizeArray)                         
 * \return int Return (-1) si Error [largo no valido o NULL pointer] - (0) si se ordena exitosamente
 *
 */
-int fantasma_ordenarPorString(Fantasma array[],int size)                              //cambiar fantasma
+int model_sortByString(Model array[],int size)                              //cambiar fantasma
 {
     int retorno=-1;
     int i, j;
@@ -364,7 +365,7 @@ int fantasma_ordenarPorString(Fantasma array[],int size)                        
 * \return int Return (-1) si Error [largo no valido o NULL pointer] - (0) si se lista exitosamente
 *
 */
-int fantasma_listar(Fantasma array[], int size)                      //cambiar fantasma
+int model_paginate(Model array[], int size)                      //cambiar fantasma
 {
     int retorno=-1;
     int i;

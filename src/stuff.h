@@ -13,6 +13,6 @@
 
 void stuff_clearScreen();
 void stuff_displayBanner();
-int stuff_showMenu(int* pOperationNumber);
+void stuff_showMenu();
 
 #endif /* STUFF_H_ */

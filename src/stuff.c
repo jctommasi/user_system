@@ -26,9 +26,8 @@ void stuff_displayBanner()
 
 }
 
-int stuff_showMenu(int* pOperationNumber)
+void stuff_showMenu()
 {
-	int operationNumber;
 	int traceback = -1;
 	printf("\033[0;31m");
 	printf("Que operacion desea realizar?\n"
@@ -38,13 +37,5 @@ int stuff_showMenu(int* pOperationNumber)
 			"\n		4. Listar"
 			"\n		5. Ordenar"
 			"\n\n	Opcion: ");
-	scanf("%d", &operationNumber);
 	printf("\033[0m");
-
-	if(operationNumber >= 1 && operationNumber <= 5)
-	{
-		*pOperationNumber = operationNumber;
-		traceback = 0;
-	}
-	return traceback;
 }
