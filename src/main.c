@@ -19,6 +19,7 @@ int main(void)
 
 	do
 	{
+		stuff_clearScreen();
 		stuff_displayBanner();
 		stuff_showMenu();
 		utn_getUnsignedInt(MSG, MSG_ERROR,1,2,1,2,2, &opNumber);

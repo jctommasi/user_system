@@ -115,8 +115,17 @@ int model_signup(Model array[], int size, int* contadorID)
             utn_getName("\nApellido: ","\nError",1,TEXT_SIZE,1,array[posicion].surname);
             utn_getTexto("\nNombre completo: ","\nError",1,TEXT_SIZE,1,array[posicion].fullname);
             //utn_getFloat("\nPago a realizar: ","\nError",1,sizeof(float),0,1,1,&array[posicion].payments);
-            printf("\n Posicion: %d\n ID: %d\n Apellido: %s\n Nombre Completo: %s\n Edad: %d",
-                   posicion, array[posicion].idUnico,array[posicion].surname,array[posicion].fullname,array[posicion].age);
+
+            printf(	"\n Posicion: %d"
+            		"\n ID: %d"
+            		"\n Apellido: %s"
+            		"\n Nombre Completo: %s"
+            		"\n Edad: %d",
+					posicion,
+					array[posicion].idUnico,
+					array[posicion].surname,
+					array[posicion].fullname,
+					array[posicion].age);
             retorno=0;
         }
     }
