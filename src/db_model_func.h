@@ -44,7 +44,7 @@ int model_findId(Model array[], int size, int valorBuscado, int* posicion);
 int model_searchInt(Model array[], int size, int valorBuscado, int* posicion);
 int model_searchString(Model array[], int size, char* valorBuscado, int* indice);
 int model_signup(Model array[], int size, int* contadorID);
-int model_destroy(Model array[], int sizeArray);
+int model_destroy_byId(Model array[], int sizeArray);
 int model_destroyMatchedInt(Model array[], int sizeArray, int valorBuscado);
 int model_modify(Model array[], int sizeArray);
 int model_sortByString(Model array[],int size);

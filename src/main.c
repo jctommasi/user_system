@@ -22,13 +22,14 @@ int main(void)
 		stuff_displayBanner();
 		stuff_showMenu();
 		utn_getUnsignedInt(MSG, MSG_ERROR,1,2,1,2,2, &opNumber);
+
 		switch (opNumber)
 		{
 			case 1:
 				model_signup(arrayModel, QTY_TIPO, &id_autoinc);
 				break;
 			case 2:
-				model_destroy(arrayModel, QTY_TIPO);
+				model_destroy_byId(arrayModel, QTY_TIPO);
 				break;
 			case 3:
 				model_modify(arrayModel, QTY_TIPO);

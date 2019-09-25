@@ -123,7 +123,7 @@ int model_signup(Model array[], int size, int* contadorID)
     return retorno;
 }
 
-int model_destroy(Model array[], int sizeArray)
+int model_destroy_byId(Model array[], int sizeArray)
 {
     int retorno=-1;
     int posicion;
@@ -292,13 +292,15 @@ int model_paginate(Model array[], int size)
     int i;
     if(array!=NULL && size>=0)
     {
+        printf("\tID\t|\tEDAD\t|\tPAGO\t|\tAPELLIDO\t|\tNOMBRE\t\n");
+        printf("============================================================================================\n");
         for(i=0;i<size;i++)
         {
             if(array[i].isEmpty==1)
                 continue;
             else
-                printf("\n ID: %d\n varInt: %d\n varFloat: %f\n varString: %s\n varLongString: %s",
-                       array[i].idUnico,array[i].age,array[i].payments,array[i].surname,array[i].fullname);
+            	printf("\t%d\t|\t%d\t|\t%f\t|\t%s\t|\t%s\t\n",
+            	array[i].idUnico,array[i].age,array[i].payments,array[i].surname,array[i].fullname);
         }
         retorno=0;
     }
