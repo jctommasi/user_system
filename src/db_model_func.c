@@ -111,9 +111,9 @@ int model_signup(Model array[], int size, int* contadorID)
             (*contadorID)++;
             array[posicion].idUnico=*contadorID;
             array[posicion].isEmpty=0;
+            utn_getUnsignedInt("\nEdad: ","\nError",1,sizeof(int),1,size,1,&array[posicion].age);
             utn_getName("\nApellido: ","\nError",1,TEXT_SIZE,1,array[posicion].surname);
             utn_getTexto("\nNombre completo: ","\nError",1,TEXT_SIZE,1,array[posicion].fullname);
-            utn_getUnsignedInt("\nEdad: ","\nError",1,sizeof(int),1,1,1,&array[posicion].age);
             //utn_getFloat("\nPago a realizar: ","\nError",1,sizeof(float),0,1,1,&array[posicion].payments);
             printf("\n Posicion: %d\n ID: %d\n Apellido: %s\n Nombre Completo: %s\n Edad: %d",
                    posicion, array[posicion].idUnico,array[posicion].surname,array[posicion].fullname,array[posicion].age);
@@ -146,6 +146,7 @@ int model_destroy(Model array[], int sizeArray)
             strcpy(array[posicion].surname,"");
             strcpy(array[posicion].fullname,"");
             retorno=0;
+            printf("\nEl usuario ha sido eliminado exitosamente.\n");
         }
     }
     return retorno;
@@ -179,6 +180,7 @@ int model_modify(Model array[], int sizeArray)
     int retorno=-1;
     int posicion;
     int id;
+
     char opcion;
     if(array!=NULL && sizeArray>0)
     {
@@ -191,22 +193,36 @@ int model_modify(Model array[], int sizeArray)
         {
             do
             {
-                printf("\n Posicion: %d\n ID: %d\n varInt: %d\n varFloat: %f\n varString: %s\n varLongString: %s",
-                       posicion, array[posicion].idUnico,array[posicion].age,array[posicion].payments,array[posicion].surname,array[posicion].fullname);
-                utn_getChar("\nModificar: A B C D S(salir)","\nError",'A','Z',1,&opcion);
+                printf( "\n=================="
+                		"\n Posicion: %d"
+                		"\n ID: %d"
+                		"\n=================="
+                		"\n A - Age: %d"
+                		"\n B - Payments: %f"
+                		"\n C - Surname: %s"
+                		"\n D - Full Name: %s",
+                       posicion,
+					   array[posicion].idUnico,
+					   array[posicion].age,
+					   array[posicion].payments,
+					   array[posicion].surname,
+					   array[posicion].fullname);
+
+                utn_getChar(MSG_MODIFY, MSG_ERROR_MODIFY,'A', 'Z', 3, &opcion);
+
                 switch(opcion)
                 {
                     case 'A':
-                        utn_getUnsignedInt("\n: ","\nError",1,sizeof(int),1,1,1,&array[posicion].age);
+                        utn_getUnsignedInt(MSG_MODIFY_AGE,MSG_ERROR_MODIFY_AGE,1,sizeof(int),1,sizeArray,1,&array[posicion].age);
                         break;
                     case 'B':
-                        utn_getFloat("\n: ","\nError",1,sizeof(float),0,1,1,&array[posicion].payments);
+                        utn_getFloat(MSG_MODIFY_PAYMENT,MSG_ERROR_MODIFY_PAYMENT,1,sizeof(float),0,1,1,&array[posicion].payments);
                         break;
                     case 'C':
-                        utn_getName("\n: ","\nError",1,TEXT_SIZE,1,array[posicion].surname);
+                        utn_getName(MSG_MODIFY_SURNAME,MSG_ERROR_MODIFY_SURNAME,1,TEXT_SIZE,1,array[posicion].surname);
                         break;
                     case 'D':
-                        utn_getTexto("\n: ","\nError",1,TEXT_SIZE,1,array[posicion].fullname);
+                        utn_getTexto(MSG_MODIFY_NAME,MSG_ERROR_MODIFY_NAME,1,TEXT_SIZE,1,array[posicion].fullname);
                         break;
                     case 'S':
                         break;

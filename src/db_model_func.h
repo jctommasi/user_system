@@ -3,6 +3,21 @@
 
 #define TEXT_SIZE 20
 
+#define MSG_ERROR_MODIFY  "\nError"
+#define MSG_MODIFY "\nModificar: A B C D - S(salir)"
+
+#define MSG_ERROR_MODIFY_AGE  "\nError al modificar la edad"
+#define MSG_MODIFY_AGE  "\nIngrese la edad, por favor:"
+
+#define MSG_ERROR_MODIFY_PAYMENT  "\nError al modificar el pago"
+#define MSG_MODIFY_PAYMENT "\nIngrese el nuevo monto del pago, por favor:"
+
+#define MSG_ERROR_MODIFY_SURNAME  "\nError al modificar el apellido"
+#define MSG_MODIFY_SURNAME "\nIngrese el nuevo apellido, por favor:"
+
+#define MSG_ERROR_MODIFY_NAME  "\nError al modificar el nombre"
+#define MSG_MODIFY_NAME "\nIngrese el nombre, por favor:"
+
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
