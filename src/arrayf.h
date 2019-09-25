@@ -9,6 +9,7 @@
 #define ARRAYF_H_
 
 #include <stdio_ext.h>
+#include "utn.h"
 
 int arrayCalcMin(int *pArray, int *pResultado, int lenght);
 int arrayCalcMax(int *pArray, int *pResultado, int lenght);

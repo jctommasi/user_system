@@ -1,16 +1,12 @@
 /*
  ============================================================================
- Name        : UTN project
+ Name        : usr sys
  Author      : juan cruz tommasi
- Version     : 1
+ Version     : 1.0 beta
  ============================================================================
  */
 
 #include "global.h"
-#include "db_model_func.h"
-#define MSG "Por favor, ingrese una opcion:"
-#define MSG_ERROR "ERROR, ingrese una opcion valida.."
-#define QTY_TIPO 3
 
 int main(void)
 {
@@ -21,14 +17,13 @@ int main(void)
 	Model arrayModel[QTY_TIPO];
 	model_clear_all(arrayModel,QTY_TIPO);
 
-	stuff_displayBanner();
-	stuff_showMenu();
-
 	do
 	{
+		stuff_displayBanner();
+		stuff_showMenu();
 		utn_getUnsignedInt(MSG, MSG_ERROR,1,2,1,2,2, &opNumber);
-
-		switch (opNumber) {
+		switch (opNumber)
+		{
 			case 1:
 				model_signup(arrayModel, QTY_TIPO, &id_autoinc);
 				break;

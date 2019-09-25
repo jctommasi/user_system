@@ -3,16 +3,20 @@
 
 #define TEXT_SIZE 20
 
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "utn.h"
+
 typedef struct
 {
     int idUnico;
     int isEmpty;
-    //-----------------
-    char varString[TEXT_SIZE];
-    int varInt;
-    float varFloat;
-    char varChar;
-    char varLongString[TEXT_SIZE];
+    int age;
+    float payments;
+    char genre; // 1 CHAR TYPE
+    char surname[TEXT_SIZE]; // STRING TYPE
+    char fullname[TEXT_SIZE]; // LONG STRING TYPE
 
 }Model;
 
@@ -30,3 +34,7 @@ int model_destroyMatchedInt(Model array[], int sizeArray, int valorBuscado);
 int model_modify(Model array[], int sizeArray);
 int model_sortByString(Model array[],int size);
 int model_paginate(Model array[], int size);
+
+int model_info_listarPorCriterio(Model arrayA[], Model arrayB[], int sizeI, int sizeJ, char* criterio);
+int model_info_listarCriterioContadorAcumulado(Model arrayA[], Model arrayB[], int sizeI, int sizeJ);
+int model_info_maxContadorAcumulado(Model arrayA[], Model arrayB[], int sizeI, int sizeJ);

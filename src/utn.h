@@ -1,3 +1,9 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio_ext.h>
+
+int getInt(int *pResultado,char *pMensaje,char *pMensajeError,int minimo,int maximo,int reintentos);
 int getString(char* msg, char* msgError, int min, int max, int* reintentos, char* resultado);
 
 int utn_getName(char* msg,char* msgError,int min,int max,int reintentos,char* resultado);

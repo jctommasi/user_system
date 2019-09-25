@@ -28,7 +28,6 @@ void stuff_displayBanner()
 
 void stuff_showMenu()
 {
-	int traceback = -1;
 	printf("\033[0;31m");
 	printf("Que operacion desea realizar?\n"
 			"\n		1. Alta"
@@ -36,7 +35,6 @@ void stuff_showMenu()
 			"\n		3. Modificar"
 			"\n		4. Listar"
 			"\n		5. Ordenar"
-			"\n		6. Salir"
-			"\n\n	Opcion:");
+			"\n		6. Salir\n\n");
 	printf("\033[0m");
 }
