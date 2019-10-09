@@ -30,8 +30,11 @@ int main(void)
 	do
 	{
 		stuff_displayMainBanner();
+		stuff_clearScreen();
+		stuff_displayMainBanner();
 		stuff_showMenu();
 		utn_getUnsignedInt(MSG, MSG_ERROR,1,2,1,2,2, &opNumber);
+
 		switch (opNumber)
 		{
 			case 1:
@@ -46,6 +49,7 @@ int main(void)
 					stuff_showDestroyBanner();
 					model_destroy(arrayModel, DB_LENGHT);
 				} else {stuff_printAndSleep(2, NO_MODELS_ERROR);}
+				model_destroy(arrayModel, DB_LENGHT);
 				break;
 			case 3:
 				if(model_checkIfDbHasEntries(arrayModel, DB_LENGHT) >= 0)
