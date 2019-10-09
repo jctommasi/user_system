@@ -8,6 +8,7 @@
 #ifndef ARRAYF_H_
 #define ARRAYF_H_
 
+#include <stdio.h>
 #include <stdio_ext.h>
 #include "utn.h"
 
