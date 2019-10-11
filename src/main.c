@@ -4,28 +4,36 @@
  ============================================================================
 */
 
-
 #include "global.h"
 
 int main(void)
 {
 
 	int opNumber;
-	int id_autoinc = 0;
+	int id_autoinc_cliente = 0;
+	int id_autoinc_recoleccion = 1000;
+/*
+	Cliente arrayCliente[DB_LENGHT];
+	cliente_clear_all(arrayCliente,DB_LENGHT_CLIENTE);
 
-	Model arrayModel[DB_LENGHT];
-	employee_clear_all(arrayModel,DB_LENGHT);
 
-	/*
-	Employee arrayEmployee[DB_LENGHT]=
+*/
+	Cliente arrayCliente[DB_LENGHT_CLIENTE]=
 	{
-		{ 0, 0, 44, 456.000, "Gabriel", "Peter"},
-		{ 1, 0, 51, 36.000, "Bond", "James"},
-		{ 2, 0, 44, 133.000, "Doe", "John"},
-		{ 3, 0, 13, 405.000, "Patton", "Mike"},
-		{ 4, 0, 420, 5.000, "Marley", "Bob"},
-		{5, 0, 1, 4445.000, "Presley", "Elvis"},
-	};*/
+		{ 0, 0, 144, "SUTEBA SOC.A", "San Luis 301", "CABA"},
+		{ 1, 0, 251, "UTN AVELLANEDA", "9 de Julio 20", "Avellaneda"},
+		{ 2, 0, 144, "KIOSKO CARLITOS", "Lavalle 200", "General Rodriguez"},
+		{ 3, 0, 413, "UBA SOCIALES", "Carlos Calvo 200", "CABA"},
+		{ 4, 0, 420, "PERTUTTI AV", "Peru 1500", "Avellaneda"},
+		{ 5, 0, 111, "GOMEZ SOC.A", "Independencia 1013", "Temperley"},
+	};
+
+	Recoleccion arrayRecoleccion[DB_LENGHT_RECOLECCION]=
+	{
+		{ 0, 0, 1, 251, 0, 0, 0, 0},
+		{ 1, 0, 2, 144, 0, 0, 0, 0},
+		{ 2, 0, 3, 413, 0, 0, 0, 0},
+	};
 
 	do
 	{
@@ -40,60 +48,52 @@ int main(void)
 			case 1:
 				stuff_clearScreen();
 				stuff_showSignUpBanner();
-				model_signup(arrayModel, DB_LENGHT, &id_autoinc);
+				cliente_signup(arrayCliente, DB_LENGHT_CLIENTE, &id_autoinc_cliente);
 				break;
 			case 2:
-				if(model_checkIfDbHasEntries(arrayModel, DB_LENGHT) >= 0)
+				if(cliente_checkIfDbHasEntries(arrayCliente, DB_LENGHT_CLIENTE) >= 0)
 				{
 					stuff_clearScreen();
 					stuff_showDestroyBanner();
-					model_destroy(arrayModel, DB_LENGHT);
-				} else {stuff_printAndSleep(2, NO_MODELS_ERROR);}
-				model_destroy(arrayModel, DB_LENGHT);
+					cliente_destroy(arrayCliente, DB_LENGHT_CLIENTE);
+				} else {stuff_printAndSleep(2, NO_CLIENTS_ERROR);}
+				cliente_destroy(arrayCliente, DB_LENGHT_CLIENTE);
 				break;
 			case 3:
-				if(model_checkIfDbHasEntries(arrayModel, DB_LENGHT) >= 0)
+				if(cliente_checkIfDbHasEntries(arrayCliente, DB_LENGHT_CLIENTE) >= 0)
 				{
 					stuff_clearScreen();
 					stuff_showModifyBanner();
-					model_modify(arrayModel, DB_LENGHT);
-				} else {stuff_printAndSleep(2, NO_MODELS_ERROR);}
+					cliente_modify(arrayCliente, DB_LENGHT_CLIENTE);
+				} else {stuff_printAndSleep(2, NO_CLIENTS_ERROR);}
 				break;
 			case 4:
-				if(model_checkIfDbHasEntries(arrayModel, DB_LENGHT) == 0)
-				{
-					int reportNum;
 					stuff_clearScreen();
-					stuff_showReportsMenu();
-					utn_getUnsignedInt(MSG, MSG_ERROR,1,2,1,2,2, &reportNum);
-
-					switch (reportNum)
-					{
-					case 1:
-						stuff_clearScreen();
-						stuff_showPaginateBanner();
-						model_sortByString(arrayModel,DB_LENGHT);
-						model_paginate(arrayModel, DB_LENGHT);
-						break;
-					case 2:
-						stuff_clearScreen();
-						stuff_showReport();
-						model_info_getSalaryMedia(arrayModel, DB_LENGHT);
-						stuff_printAndSleep(2, MSG_REDIRECT);
-						break;
-					default:
-						printf(MSG_ERROR);
-						break;
-					}
-				}else {stuff_printAndSleep(2, NO_MODELS_ERROR);}
+					stuff_showSignUpBanner();
+					cliente_paginate(arrayCliente, DB_LENGHT_CLIENTE);
+					recoleccion_signup(arrayRecoleccion, DB_LENGHT_RECOLECCION,&id_autoinc_recoleccion);
 				break;
 			case 5:
+				if(recoleccion_checkIfDbHasEntries(arrayRecoleccion, DB_LENGHT_RECOLECCION) >= 0)
+				{
+					stuff_clearScreen();
+					stuff_showModifyBanner();
+					recoleccion_process(arrayRecoleccion, DB_LENGHT_RECOLECCION);
+				} else {stuff_printAndSleep(2, NO_RECOLECCION_ERROR);}
+				break;
+			case 6:
+				if(recoleccion_checkIfDbHasEntries(arrayRecoleccion, DB_LENGHT_RECOLECCION) >= 0)
+				{
+					stuff_clearScreen();
+					stuff_showModifyBanner();
+					cliente_print_with_pend(arrayCliente, DB_LENGHT_CLIENTE, arrayRecoleccion, DB_LENGHT_RECOLECCION);
+				} else {stuff_printAndSleep(2, NO_RECOLECCION_ERROR);}
 				break;
 			default:
 				printf(MSG_ERROR);
 				break;
 		}
-	}	while (opNumber != 5);
+	}	while (opNumber != 9);
 
 	return EXIT_SUCCESS;
 }

@@ -37,12 +37,16 @@ void stuff_displayMainBanner()
 void stuff_showMenu()
 {
 	printf("\033[0;31m");
-	printf("\t\tBienvenidx al sistema de administración, que operación desea realizar?\n"
-			"\n\t\t\t\t\t\t1. Alta"
-			"\n\t\t\t\t\t\t2. Baja"
-			"\n\t\t\t\t\t\t3. Modificar"
-			"\n\t\t\t\t\t\t4. Informar"
-			"\n\t\t\t\t\t\t5. Salir\n\n");
+	printf("\t\tBienvenidx al sistema de administración de residuos, que operación desea realizar?\n"
+			"\n\t\t\t\t\t\t1. Alta de Cliente"
+			"\n\t\t\t\t\t\t2. Baja de Cliente"
+			"\n\t\t\t\t\t\t3. Modificar Cliente"
+			"\n\t\t\t\t\t\t4. Crear pedido de Recoleccion"
+			"\n\t\t\t\t\t\t5. Procesar Residuos"
+			"\n\t\t\t\t\t\t6. Imprimir Clientes"
+			"\n\t\t\t\t\t\t7. Imprimir pedidos de Clientes"
+			"\n\t\t\t\t\t\t8. Imprimir pedidos Procesados"
+			"\n\t\t\t\t\t\t9. Salir\n\n");
 	printf("\033[0m");
 }
 
@@ -195,6 +199,6 @@ void stuff_employeeGoneAway()
 			"\t\t\t\t#####  /                `                    ; ##############\n"
 			"\t\t\t\t###  /                                      ; ###############\n"
 			"\t\t\t\t#                                            ################\n"
-			"\t\t\t\t#          EMPLOYEE HAS GONE AWAY            ################\n"
+			"\t\t\t\t#          CLIENT  HAS GONE AWAY            ################\n"
 			"\033[0m");
 }
